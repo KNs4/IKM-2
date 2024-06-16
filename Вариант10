@@ -1,0 +1,92 @@
+class Queue:
+    def __init__(self):
+        # Инициализация очереди
+        self.queue = []
+
+    def push(self, n):
+        # Добавление элемента в очередь
+        self.queue.append(n)
+        return "ok"
+
+    def pop(self):
+        # Удаление первого элемента из очереди
+        if self.is_empty():
+            return "error"
+        return self.queue.pop(0)
+
+    def front(self):
+        # Получение первого элемента очереди без удаления
+        if self.is_empty():
+            return "error"
+        return self.queue[0]
+
+    def size(self):
+        # Возвращение размера очереди
+        return len(self.queue)
+
+    def clear(self):
+        # Очистка очереди
+        self.queue.clear()
+        return "ok"
+
+    def exit(self):
+        # Завершение работы программы
+        return "bye"
+
+    def is_empty(self):
+        # Проверка, пуста ли очередь
+        return len(self.queue) == 0
+
+def process_command(queue, command):
+    # Обработка команд
+    if command == "push":
+        # Обработка команды push
+        try:
+            n = int(input("Введите число для добавления в очередь: "))
+            return queue.push(n)
+        except ValueError:
+            return "ошибка ввода"
+    elif command == "pop":
+        # Обработка команды pop
+        return queue.pop()
+    elif command == "front":
+        # Обработка команды front
+        return queue.front()
+    elif command == "size":
+        # Обработка команды size
+        return queue.size()
+    elif command == "clear":
+        # Обработка команды clear
+        return queue.clear()
+    elif command == "exit":
+        # Обработка команды exit
+        return queue.exit()
+    else:
+        # Неизвестная команда
+        return "неизвестная команда"
+
+def main():
+    # Вывод информации о командах
+    print("Доступные команды:")
+    print("push - добавить элемент в очередь. После ввода этой команды введите число для добавления.")
+    print("pop - удалить первый элемент из очереди.")
+    print("front - вывести первый элемент очереди.")
+    print("size - вывести размер очереди.")
+    print("clear - очистить очередь.")
+    print("exit - завершить выполнение программы.")
+    print()
+    
+    # Главная функция для запуска программы
+    queue = Queue()
+    while True:
+        # Запрос команды от пользователя
+        command = input("Введите команду (push, pop, front, size, clear, exit): ")
+        result = process_command(queue, command)
+        print(result)
+        if command == "exit":
+            break
+
+if __name__ == "__main__":
+    # Точка входа в программу
+    main()
+
